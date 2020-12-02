@@ -1,6 +1,3 @@
-import {api} from "../../pages/index.js";
-
-
 export default class Card {
   constructor(title, imageLink, cardSelector, handleCardClick, acceptDeleteFunction, data, user) {
     this._title = title;

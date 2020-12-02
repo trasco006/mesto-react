@@ -8,6 +8,7 @@
 @import url('__form/popup__form.css');
 @import url('__button/popup__button.css');
 @import url('__button/_disabled/popup__button_disabled.css');
+@import url('__input-box/popup__input-box.css');
 .popup {
     position: fixed;
     top: 0;

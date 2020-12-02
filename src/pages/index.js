@@ -15,7 +15,7 @@ import {
   avatarEditButton
 } from "../scripts/utils/constants.js"
 import Card from "../scripts/components/Card.js"
-import API from "../scripts/components/API.js"
+import Api from "../utils/api.js"
 import CardDeletePopup from "../scripts/components/CardDeletePopup";
 import Section from "../scripts/components/Section.js"
 import PopupWithImage from "../scripts/components/PopuWithImage";
@@ -25,10 +25,10 @@ import './index.css'
 
 import UserInfo from "../scripts/components/UserInfo";
 /****************************************************************************/
-// СОЗДАНИЕ ЭКЗЕМПЛЯРА API //
+// СОЗДАНИЕ ЭКЗЕМПЛЯРА Api //
 /****************************************************************************/
 
-export const api = new API({
+export const api = new Api({
   url: "https://mesto.nomoreparties.co/v1/cohort-17/",
   headers: {
     authorization: 'cef396cb-7f39-49a2-a008-1d3b290a4906',
