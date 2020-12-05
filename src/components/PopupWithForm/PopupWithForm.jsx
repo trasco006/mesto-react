@@ -3,20 +3,11 @@ import React from 'react';
 class PopupWithForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClosePopup = this.handleClosePopup.bind(this)
     this.render = this.render.bind(this)
     this.state = {
       isOpen: !this.props.isOpen
     }
   }
-
-  handleClosePopup() {
-    document.querySelector('.popup').classList.remove('popup_opened')
-    this.setState({
-      isOpen: !this.props.isOpen
-    })
-  }
-
   render() {
     if (this.state.isOpen === this.props.isOpen) {
       return (
@@ -36,7 +27,7 @@ class PopupWithForm extends React.Component {
             <button aria-label="Close popup"
                     type="button"
                     className="popup__escape-button popup_close_button"
-                    onClick={this.handleClosePopup}/>
+                    onClick={this.props.closeAllPopups}/>
           </form>
         </div>
       )
