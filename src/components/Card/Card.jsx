@@ -1,20 +1,20 @@
 import React from 'react';
-import ImagePopup from "../ImagePopup/ImagePopup";
+
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       selectedCard: props.selectedCard,
     }
-    this.handleCardClick = this.handleCardClick.bind(this)
     this.render = this.render.bind(this)
+    this.handleCardClick = this.handleCardClick.bind(this)
   }
 
   handleCardClick() {
-    this.setState({
-      selectedCard: !this.state.selectedCard,
-    })
+    this.props.onCardClick(
+      this.props.cardInfo.link,
+      this.props.cardInfo.name)
   }
 
   render() {
@@ -25,7 +25,9 @@ class Card extends React.Component {
             <img src={this.props.cardInfo.link}
                  alt={this.props.cardInfo.name}
                  className="card__image"
-                 onClick={this.handleCardClick}/>
+                 onClick={this.handleCardClick
+
+                 }/>
             <button aria-label="Delete card"              //TODO сделать логику вкл/выкл кнопки
                     className="card__trash-can"/>
             <div className="card__section">
@@ -38,11 +40,6 @@ class Card extends React.Component {
               </div>
             </div>
           </div>
-          <ImagePopup srcImg={this.props.cardInfo.link}
-                      closePopup={this.handleCardClick}
-                      title={this.props.cardInfo.name}
-                      closeAllPopups={this.props.closeAllPopups}
-                      selectedCard={this.state.selectedCard}/>
         </div>
       )
     } else {
