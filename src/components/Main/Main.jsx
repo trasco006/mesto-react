@@ -34,6 +34,9 @@ class Main extends React.Component {
         cards: res
       })
     })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
   }
 
   render() {
@@ -44,9 +47,11 @@ class Main extends React.Component {
             <div className="profile__avatar-container">
               <div className="profile__avatar"
                    style={{backgroundImage: `url(${this.state.userAvatar})`}}/>
-              <div className="profile__avatar-edit">
+              <div className="profile__avatar-edit"
+                   onClick={this.props.openEditAvatarPopup}
+              >
                 <div className="profile__avatar-edit-ico"
-                     onClick={this.props.openEditAvatarPopup}/>
+                />
               </div>
             </div>
             <div className="profile__info">
@@ -70,15 +75,12 @@ class Main extends React.Component {
               return (
                 <Card key={index}
                       cardInfo={item}
-                      closeAllPopups={this.props.closeAllPopups}
                       onCardClick={this.props.onCardClick}
-                      selectedCard={this.props.selectedCard}/>
-                      )
+                      />
+              )
             }
           )}
-
         </section>
-
       </main>)
   }
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 
 class ImagePopup extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.render = this.render.bind(this)
   }
 
@@ -17,13 +17,12 @@ class ImagePopup extends React.Component {
               <p className="popup-image__title">{this.props.title}</p>
               <button aria-label="Close"
                       className="popup-image__escape-button popup_close_button"
-                      onClick={this.props.closePopup}/>
+                      onClick={this.props.closeAllPopups}/>
             </div>
           </div>
         </div>
       ) : null)
   }
 }
-
 
 export default ImagePopup
