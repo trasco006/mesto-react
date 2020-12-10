@@ -69,6 +69,7 @@ class App extends React.Component {
   }
 
   handleAddPlaceClick(evt) {
+    console.log('privet')
     this.setState({
       onClose: !this.state.onClose,
       name: 'place',
