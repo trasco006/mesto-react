@@ -43,9 +43,9 @@ class Main extends React.Component {
                   onClick={this.props.openAddPlacePopup}/>
         </section>
         <section className="elements">
-          {this.props.cards.map((item, index) => {
+          {this.props.cards.map((item) => {
               return (
-                <Card key={index}
+                <Card key={item._id}
                       cardInfo={item}
                       onCardClick={this.props.onCardClick}
                       onCardLike={this.props.onCardLike}

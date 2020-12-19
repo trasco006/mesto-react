@@ -7,6 +7,8 @@ export class AddPlacePopu extends React.Component {
     this.state = {
       name: "place",
       title: "Новое место",
+      cardName: '',
+      cardLink: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.render = this.render.bind(this)
@@ -50,6 +52,7 @@ export class AddPlacePopu extends React.Component {
           <div className="popup__input-box">
             <input id="input-card-name"
                    onChange={this.handleChangeCardName}
+                   value={this.state.cardName}
                    type="text"
                    minLength="1"
                    maxLength="30"
@@ -63,6 +66,7 @@ export class AddPlacePopu extends React.Component {
                   className="popup__error "/>
             <input id="input-url"
                    onChange={this.handleChangeCardLink}
+                   value={this.state.cardLink}
                    type="url"
                    name="card-src"
                    autoComplete="off"

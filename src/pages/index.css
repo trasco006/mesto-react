@@ -17,4 +17,5 @@
   background-color: #000000;
   color: #FFFFFF;
   font-family: 'Inter', 'Arial', sans-serif;
+  transition: all 1s ease-out;
 }

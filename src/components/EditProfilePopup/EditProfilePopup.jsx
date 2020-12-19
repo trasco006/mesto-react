@@ -60,11 +60,13 @@ export default class EditProfilePopup extends React.Component {
                    maxLength="40"
                    className="popup__input form__input  form__input_first form__input_name"
                    tabIndex="0"
-                   onInput={this.handleChangeUserName}
+                   onChange={this.handleChangeUserName}
+                   value={this.state.inputUserName}
                    required/>
             <span id="input-name-error"
                   className="popup__error"/>
             <input onChange={this.handleChangeUserAbout}
+                   value={this.state.inputUserAbout}
                    id="input-subtitle"
                    type="text"
                    name="about-user"
