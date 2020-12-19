@@ -5,23 +5,26 @@ class PopupWithForm extends React.Component {
     super(props);
     this.render = this.render.bind(this)
     this.state = {
-      isOpen: !this.props.isOpen
+      isOpen: this.props.isOpen
     }
   }
+
   render() {
-    if (this.state.isOpen === this.props.isOpen) {
+    if (this.state.isOpen === true) {
       return (
         <div className={`popup popup_opened popup_type_${this.props.name}`}>
           <div className="popup__overlay"/>
           <form name={`popup_type_${this.props.name}`}
+                onSubmit={this.props.onSubmit}
                 className="popup__form popup__container">
             <p className="popup__title">{`${this.props.title}`}</p>
-            <div dangerouslySetInnerHTML={{__html: `${this.props.children}`}}/>
+            <div>
+              {this.props.children}
+            </div>
             <button aria-label="Save"
                     type="submit"
                     className=" popup__button popup__save-button save__button"
-                    tabIndex="0"
-                    onClick={this.handleSubmit}>
+                    tabIndex="0">
               Сохранить
             </button>
             <button aria-label="Close popup"
