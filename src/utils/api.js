@@ -1,4 +1,5 @@
 import React from 'react';
+
 class Api extends React.Component {
   constructor(config) {
     super()
@@ -25,13 +26,13 @@ class Api extends React.Component {
     return this._controlError(promise)
   }
 
-  addNewCard(name, src) {
+  addNewCard(obj) {
     const promise = fetch(`${this._baseUrl}cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        name: name,
-        link: src
+        name: obj.name,
+        link: obj.link
       })
     })
     return this._controlError(promise)
@@ -45,13 +46,13 @@ class Api extends React.Component {
     return this._controlError(promise)
   }
 
-  setUserInfo(name, subtitle) {
+  setUserInfo(obj) {
     const promise = fetch(`${this._baseUrl}users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: name,
-        about: subtitle
+        name: obj.name,
+        about: obj.about
       })
     })
     return this._controlError(promise)
@@ -76,21 +77,20 @@ class Api extends React.Component {
     return this._controlError(promise)
   }
 
-
-  likeCard(cardId) {
-    const promise = fetch(`${this._baseUrl}cards/likes/${cardId}`, {
-      method: 'PUT',
-      headers: this._headers,
-    })
-    return this._controlError(promise)
-  }
-
-  disLikeCard(cardId) {
-    const promise = fetch(`${this._baseUrl}cards/likes/${cardId}`, {
-      method: 'DELETE',
-      headers: this._headers,
-    })
-    return this._controlError(promise)
+  changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked === true) {
+      const promise = fetch(`${this._baseUrl}cards/likes/${cardId}`, {
+        method: 'DELETE',
+        headers: this._headers,
+      })
+      return this._controlError(promise)
+    } else {
+      const promise = fetch(`${this._baseUrl}cards/likes/${cardId}`, {
+        method: 'PUT',
+        headers: this._headers,
+      })
+      return this._controlError(promise)
+    }
   }
 }
 

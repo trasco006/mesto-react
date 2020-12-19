@@ -1,43 +1,15 @@
 import React from 'react';
-import PopupWithForm from "../PopupWithForm/PopupWithForm";
-import api from "../../utils/api";
 import Card from "../Card/Card"
+import {CurrentUserContext} from '../../contexts/CurrentUserContext'
 
 class Main extends React.Component {
+  static contextType = CurrentUserContext
+
   constructor(props) {
     super(props);
-    this.state = {
-      userAvatar: '',
-      userName: '',
-      userDescription: '',
-      cards: []
-    };
     this.render = this.render.bind(this)
-    this.componentDidMount = this.componentDidMount.bind(this)
   }
 
-  componentDidMount() {
-    api.getUserInfo().then((res) => {
-      this.setState({
-        userAvatar: res.avatar,
-        userName: res.name,
-        userDescription: res.about
-      })
-
-    })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      });
-
-    api.getAllCards().then((res) => {
-      this.setState({
-        cards: res
-      })
-    })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      });
-  }
 
   render() {
     return (
@@ -46,7 +18,7 @@ class Main extends React.Component {
           <div className="profile__column">
             <div className="profile__avatar-container">
               <div className="profile__avatar"
-                   style={{backgroundImage: `url(${this.state.userAvatar})`}}/>
+                   style={{backgroundImage: `url(${this.context.avatar})`}}/>
               <div className="profile__avatar-edit"
                    onClick={this.props.openEditAvatarPopup}
               >
@@ -56,13 +28,13 @@ class Main extends React.Component {
             </div>
             <div className="profile__info">
               <div className="profile__info-column">
-                <p className="profile__user-name">{this.state.userName}</p>
+                <p className="profile__user-name">{this.context.name}</p>
                 <button aria-label="Edit profile"
                         type="button"
                         className="profile__edit-button"
                         onClick={this.props.openEditProfilePopup}/>
               </div>
-              <p className="profile__subtitle">{this.state.userDescription}</p>
+              <p className="profile__subtitle">{this.context.about}</p>
             </div>
           </div>
           <button aria-label="Add new card"
@@ -71,12 +43,14 @@ class Main extends React.Component {
                   onClick={this.props.openAddPlacePopup}/>
         </section>
         <section className="elements">
-          {this.state.cards.map((item, index) => {
+          {this.props.cards.map((item, index) => {
               return (
                 <Card key={index}
                       cardInfo={item}
                       onCardClick={this.props.onCardClick}
-                      />
+                      onCardLike={this.props.onCardLike}
+                      onCardDelete={this.props.onCardDelete}
+                />
               )
             }
           )}
